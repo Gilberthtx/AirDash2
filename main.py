@@ -58,7 +58,7 @@ def register():
 '''LOGIN PAGE'''
 
 
-@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = forms.LoginForm()
     if form.validate_on_submit():
@@ -89,7 +89,7 @@ def index():
 '''SEARCH PAGE'''
 
 
-@app.route('/')
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     # form
     form = forms.FlightSearchForm()
