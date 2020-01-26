@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- title -->
         <title>{% block title %}{% endblock %}</title>
 
@@ -26,11 +27,10 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-
         <!-- nav-mobile-container -->
         <div class="nav-mobile-container shadow">
             <div class="mobile-brand-container">
-                 <a class="mobile-brand-name" href="{{ url_for('index')}}">AirDash</a>
+                 <a class="mobile-brand-name" href="{{ url_for('search')}}">AirDash</a>
             </div>
             <div class="mobile-button-container">
                 <button class="mobile-button navbar-toggler"><i class="fas fa-bars"></i></button>
@@ -45,7 +45,7 @@
                 <hr class="mobile-line">
                 <a class="mobile-nav-link" href="{{ url_for('search') }}">Flights</a>
                 <hr class="mobile-line">
-                <a class="mobile-nav-link" href="{{ url_for('food_ordering') }}">Food Ordering</a>
+                <a class="mobile-nav-link" href="{{ url_for('store') }}">Food Service</a>
                 <hr class="mobile-line">
                 <a type="button" class="btn btn-sm btn-success mobile-signin-buttons" href="{{ url_for('login') }}">Sign In</a>
                 <a type="button" class="btn btn-sm btn-info mobile-register-buttons" href="{{ url_for('register') }}">Create An Account</a>
@@ -54,9 +54,6 @@
 
         <!-- additional content -->
         {% block content %}{% endblock %}
-
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <!-- javascript for this page -->
         <script type="text/javascript" src="{{ url_for('static', filename='js/nav.js')}}"></script>

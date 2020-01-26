@@ -27,8 +27,8 @@
             <p class="flight-duration">{{ x[4][0] }}h {{ x[4][1] }}m</p>
             <p class="flight-symbols"><small><strong>{{ x[1][0] }} - {{ x[2][0] }}</strong></small></p>
         </div>
-        <div class="text-center">
-            <button class="navbar-toggler flight-add text-success"><i class="fas fa-plus-circle"></i></button>
+        <div class=text-center">
+            <a href="/{{x[0]}}/{{date}}/{{x[1][0]}}/{{x[2][0]}}/{{x[5]}}/{{x[6]}}" class="navbar-toggler flight-add text-success"><i class="fas fa-plus-circle"></i></a>
         </div>
     </div>
     {% endfor %}

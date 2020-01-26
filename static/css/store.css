@@ -1,0 +1,42 @@
+h1 {
+color: black;
+
+}
+.inside-cart{
+    width: 3vw;
+    display: grid;
+    color: red;
+    grid-template-rows: auto;
+    margin-top: 10px;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 2fr 1fr 2fr
+}
+.totalPrice{
+    width: 30vw;
+
+}
+
+
+.store-container{
+    margin-top: 80px;
+    background-color: orange;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+}
+.top-container{
+    text-align: right;
+}
+.checkout{
+    display: none;
+}
+.title{
+    font-size: 25px;
+    font-family: 'Alata', sans-serif;
+    margin: 10px 0px 10px 20px;
+    padding: 0px;
+}
+.shopping-button{
+    font-size: 30px;
+    margin-right: 10px;
+}

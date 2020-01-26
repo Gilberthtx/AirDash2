@@ -90,3 +90,11 @@ class FlightSearchForm(FlaskForm):
         ]
     )
     submit = SubmitField('Search')
+
+
+'''FORM TO REMOVE FLIGHT'''
+
+
+class RemoveFlightForm(FlaskForm):
+    flight_number = StringField("Flight Number")
+    remove = SubmitField('Remove Flight')

@@ -9,45 +9,70 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css')}}">
     <!-- Calender CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 {% endblock %}
 
 <!-- content to add to layout -->
 {% block content %}
+    <div class="loading-container">
+        <!-- loading screen -->
+        <div class="loading">
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+        </div>
+
+    </div>
 <!-- SEARCH FORM-->
     <form class="form-container" method="POST">
         {{ form.hidden_tag() }}
         <div class="date-container">
             <p class="form-labels">Date:</p>
-            {{ form.form_date(class='date form-control') }}
+            {{ form.form_date(class='date form-control', value='01/25/2020') }}
         </div>
         <div class="origin-container">
             <p class="form-labels">From:</p>
-            {{ form.form_origin(class='origin form-control') }}
+            {{ form.form_origin(class='origin form-control', list='airports') }}
+            <datalist id="airports">
+                {% for i in range(length) %}
+                <option value='{{ flight_symbols[i] }}'>{{ airports[i] }}</option>
+                {% endfor %}
+            </datalist>
         </div>
         <div class="destination-container">
             <p class="form-labels">To:</p>
-            {{ form.form_destination(class='destination form-control') }}
+            {{ form.form_destination(class='destination form-control', list='airports2') }}
+            <datalist id="airports2">
+                {% for i in range(length) %}
+                <option value='{{ flight_symbols[i] }}'>{{ airports[i] }}</option>
+                {% endfor %}
+            </datalist>
         </div>
         {{ form.submit(class='btn btn-outline-success search') }}
     </form>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
     <!-- CALENDER JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script>
-        $(function() {
-          $('input[name="form_date"]').daterangepicker({
+    $(function() {
+        $('input[name="form_date"]').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'),10)
-          });
         });
+    });
+    setTimeout(function(){
+        $('.loading-container').remove();
+    }, 1000);
     </script>
 {% endblock %}
