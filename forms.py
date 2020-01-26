@@ -1,28 +1,92 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, DateField
-from wtforms.validators import DataRequired, Regexp, ValidationError, Email, Length, EqualTo
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import (DataRequired, Regexp, ValidationError, Email, Length, EqualTo)
+
+from models import User
 
 
-""" FORM FOR SEARCH"""
+# this method will check if the email already exists
+def email_exists(form, field):
+    if User.select().where(User.email == field.data).exists():
+        raise ValidationError('User with that email already exists.')
 
 
-class SearchForm(FlaskForm):
-    date = DateField(
+'''FORM FOR REGISTERING'''
+
+
+class RegisterForm(FlaskForm):
+    name = StringField(
+        'Name',
+        validators=[
+            DataRequired(),
+            Regexp(
+                r'^[a-zA-Z]'
+            )
+        ]
+    )
+    email = StringField(
+        'Email',
+        validators=[
+            DataRequired(),
+            Email(),
+            email_exists
+        ]
+    )
+    password = PasswordField(
+        'Password',
+        validators=[
+            DataRequired(),
+            Length(min=8),
+            EqualTo('password2', message='Passwords must match')
+        ]
+    )
+    password2 = PasswordField(
+        'Confirm password',
+        validators=[
+            DataRequired()
+        ]
+    )
+
+
+'''FORM FOR LOGIN'''
+
+
+class LoginForm(FlaskForm):
+    email = StringField(
+        'Email',
+        validators=[
+            DataRequired(),
+            Email()
+        ]
+    )
+    password = PasswordField(
+        'Password',
+        validators=[
+            DataRequired()
+        ]
+    )
+
+
+'''FORM FOR SEARCH'''
+
+
+class FlightSearchForm(FlaskForm):
+    form_date = StringField(
         'Date',
         validators=[
             DataRequired()
         ]
     )
-    origin = StringField(
+    form_origin = StringField(
         'From',
         validators=[
-            DataRequired
+            DataRequired()
         ]
     )
-    destination = StringField(
+    form_destination = StringField(
         'To',
         validators=[
-            DataRequired
+            DataRequired()
         ]
     )
-    search = SubmitField()
+    submit = SubmitField('Search')

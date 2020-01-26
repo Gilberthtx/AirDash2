@@ -1,49 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flight Search</title>
+{% extends 'register.html' %}
 
+<!-- title for page -->
+{% block title %}Flight Search{% endblock %}
+
+<!-- add to head -->
+{% block head %}
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css')}}">
+    <!-- Calender CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+{% endblock %}
 
-    <!-- BOOTSTRAP CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-</head>
-<body>
-    <!-- SEARCH FORM-->
+<!-- content to add to layout -->
+{% block content %}
+<!-- SEARCH FORM-->
     <form class="form-container" method="POST">
         {{ form.hidden_tag() }}
         <div class="date-container">
             <p class="form-labels">Date:</p>
-            {{ form.date(class='date form-control') }}
+            {{ form.form_date(class='date form-control') }}
         </div>
-         <script>
-            $(function() {
-              $('input[name="date"]').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                minYear: 1901,
-                maxYear: parseInt(moment().format('YYYY'),10)
-              });
-            });
-        </script>
         <div class="origin-container">
             <p class="form-labels">From:</p>
-            {{ form.origin(class='origin form-control') }}
+            {{ form.form_origin(class='origin form-control') }}
         </div>
         <div class="destination-container">
             <p class="form-labels">To:</p>
-            {{ form.destination(class='destination form-control') }}
+            {{ form.form_destination(class='destination form-control') }}
         </div>
-        {{ form.search(class='btn btn-outline-success search') }}
+        {{ form.submit(class='btn btn-outline-success search') }}
     </form>
 
     <!-- BOOTSTRAP JS -->
@@ -55,6 +40,14 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-</body>
-</html>
+    <script>
+        $(function() {
+          $('input[name="form_date"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10)
+          });
+        });
+    </script>
+{% endblock %}

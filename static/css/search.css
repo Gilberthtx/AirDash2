@@ -1,8 +1,11 @@
+.form{
+    font-family: 'Alata', sans-serif;
+}
 .form-container{
     display: grid;
     grid-template-columns: 47.5% 47.5%;
     width: 80%;
-    margin: 50px auto;
+    margin: 110px auto 0px auto;
     grid-gap: 30px 5%;
 }
 .date-container{
