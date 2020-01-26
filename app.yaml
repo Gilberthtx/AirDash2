@@ -1,0 +1,17 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  script: main.app
+
+- url: /.*
+  script: main.app
+
+libraries:
+- name: ssl
+  version: latest
+
+  skip_files:
+- /home/gilberthtx/AirDash/~envs/AirDash/lib/python3.7/config-3.7m-x86_64-linux-gnu/libpython3.7m.a

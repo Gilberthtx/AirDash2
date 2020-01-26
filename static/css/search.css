@@ -1,0 +1,21 @@
+.form-container{
+    display: grid;
+    grid-template-columns: 47.5% 47.5%;
+    width: 80%;
+    margin: 50px auto;
+    grid-gap: 30px 5%;
+}
+.date-container{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.form-labels{
+    font-family: 'Alata', sans-serif;
+    font-size: 20px;
+    padding: 0px;
+    margin: 0px;
+}
+.search{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
