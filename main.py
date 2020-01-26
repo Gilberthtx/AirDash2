@@ -30,7 +30,7 @@ def search():
 """FLIGHTS PAGE"""
 
 
-@app.route('/search/<date>/<origin>/<destination>')
+@app.route('/')
 def flights(date, origin, destination):
     # get data
     flights.flights_search(date, origin, destination)
